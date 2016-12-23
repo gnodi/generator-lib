@@ -123,7 +123,25 @@ module.exports = class extends Generator {
       // Install dependencies.
       this.npmInstall();
     }
+  }
 
-    console.log(yosay(chalk.bold.green('Congratulations!')));
+  end() {
+    console.log(yosay(
+      chalk.bold.green('Congratulations!') +
+      chalk.green(' You') +
+      chalk.green(' have') +
+      chalk.green(' successfully') +
+      chalk.green(' generated') +
+      chalk.green(' a') +
+      chalk.green(' gnodi') +
+      chalk.green(' lib!')
+    ));
+    console.log(chalk.bold('Follow these steps to finalize the initialization:'));
+    console.log('1-Create the repository on github with no readme and gitignore files at:');
+    console.log(chalk.cyan('   https://github.com/organizations/gnodi/repositories/new'));
+    console.log('2-Enable the repository on travis at:');
+    console.log(chalk.cyan('   https://travis-ci.org/profile/gnodi'));
+    console.log('3-Execute the generator initialization command:');
+    console.log(chalk.cyan('   yo @gnodi/lib:init'));
   }
 }
