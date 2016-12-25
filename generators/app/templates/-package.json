@@ -1,6 +1,6 @@
 {
   "name": "@gnodi/<%= lib.name %>",
-  "description": "[Node.js] <%= lib.description %>",
+  "description": "<%= lib.description %>",
   "version": "0.0.0",
   "author": "<%= author.name %> <<%= author.email %>> (<%= author.url %>)",
   "contributors": [],
