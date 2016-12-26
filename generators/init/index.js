@@ -16,6 +16,6 @@ module.exports = class extends Generator {
     this.spawnCommandSync('git', ['add', '.']);
     this.spawnCommandSync('git', ['commit', '-m', 'Initialize project']);
     this.spawnCommandSync('git', ['remote', 'add', 'origin', this.package.repository.url]);
-    this.spawnCommandSync('git', ['push', 'origin', 'master']);
+    this.spawnCommandSync('git', ['push', '-u', 'origin', 'master']);
   }
 }
