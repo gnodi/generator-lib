@@ -13,43 +13,58 @@ module.exports = class extends Generator {
   }
 
   prompting() {
+    const pack = this.fs.readJSON(this.destinationPath('package.json'), {});
+    const author = pack.author && pack.author.match(/^([^<]*)<([^>]*)>\s*\(([^)]*)\)/);
+    const defaults = {
+      lib: {
+        name: (pack.name && pack.name.split('/')[1]) || this.appname,
+        description: pack.description || '',
+        dev: true
+      },
+      author: {
+        name: (author && author[1] && author[1].trim()) || 'John Doe',
+        email: (author && author[2]) || 'john.doe@gnodi.com',
+        url: (author && author[3]) || 'https://github.com/gnodi'
+      }
+    };
+
     // Define prompt.
     return this.prompt([
       {
         type: 'input',
         name: 'lib.name',
         message: 'Your lib name',
-        default: this.appname
+        default: defaults.lib.name
       },
       {
         type: 'input',
         name: 'lib.description',
         message: 'A description of your lib',
-        default: ''
+        default: defaults.lib.description
       },
       {
         type: 'confirm',
         name: 'lib.dev',
         message: 'Is it a dev dependency?',
-        default: true
+        default: defaults.lib.dev
       },
       {
         type: 'input',
         name: 'author.name',
         message: 'Your name',
-        default: 'John Doe'
+        default: defaults.author.name
       },
       {
         type: 'input',
         name: 'author.email',
         message: 'Your email',
-        default: 'john.doe@gnodi.com'
+        default: defaults.author.email
       },
       {
         type: 'input',
         name: 'author.url',
         message: 'Your URL',
-        default: 'https://github.com/gnodi'
+        default: defaults.author.url
       }
     ]).then((answers) => {
       // Format answers.
@@ -125,6 +140,7 @@ module.exports = class extends Generator {
     }
   }
 
+  /* eslint-disable class-methods-use-this, no-console */
   end() {
     console.log(yosay(
       chalk.bold.green('Congratulations!') +
@@ -144,4 +160,5 @@ module.exports = class extends Generator {
     console.log('3-Execute the generator initialization command:');
     console.log(chalk.cyan('   yo @gnodi/lib:init'));
   }
-}
+  /* eslint-enable class-methods-use-this, no-console */
+};
