@@ -128,6 +128,10 @@ module.exports = class extends Generator {
       this.params
     );
     this.fs.copy(
+      this.templatePath('test.js'),
+      this.destinationPath('test.js')
+    );
+    this.fs.copy(
       this.templatePath('travis.yml'),
       this.destinationPath('.travis.yml')
     );
@@ -157,7 +161,9 @@ module.exports = class extends Generator {
     console.log(chalk.cyan('   https://github.com/organizations/gnodi/repositories/new'));
     console.log('2-Enable the repository on travis at:');
     console.log(chalk.cyan('   https://travis-ci.org/profile/gnodi'));
-    console.log('3-Execute the generator initialization command:');
+    console.log('3-Enable the repository on coveralls at:');
+    console.log(chalk.cyan('   https://coveralls.io/repos/new?name=gnodi&service=github'));
+    console.log('4-Execute the generator initialization command:');
     console.log(chalk.cyan('   yo @gnodi/lib:init'));
   }
   /* eslint-enable class-methods-use-this, no-console */

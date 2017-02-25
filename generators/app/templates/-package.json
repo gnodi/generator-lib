@@ -11,9 +11,10 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "@gnodi/eslint-config": "^0.1.0",
-    "istanbul": "^0.4.0",
-    "jasmine": "^2.5.2"
+    "@gnodi/eslint-config": "^0.2.0",
+    "coveralls": "^2.11.15",
+    "jasmine": "^2.5.2",
+    "nyc": "^10.1.2"
   },
   "license": "MIT",
   "repository": {
@@ -22,8 +23,11 @@
   },
   "main": "index",
   "scripts": {
+    "check": "gnodi-lint && npm run test-coverage",
     "lint": "gnodi-lint",
-    "test": "NODE_ENV='test' istanbul cover jasmine test/**/*.js"
+    "test": "NODE_ENV='test' jasmine test.js index.js test/unit/ lib/",
+    "test-coverage": "nyc npm test && nyc report --reporter text-summary",
+    "test-coveralls": "nyc npm test && nyc report --reporter text-lcov | coveralls"
   },
   "bin": {},
   "engines": {
