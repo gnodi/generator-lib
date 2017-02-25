@@ -1,7 +1,7 @@
 {
   "name": "@gnodi/generator-lib",
   "description": "[Node.js] Generate a gnodi lib with Yeoman!",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": "Thomas Prelot <tprelot@gmail.com> (https://github.com/Gnucki)",
   "files": [
     "generators"
